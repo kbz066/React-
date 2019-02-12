@@ -11,10 +11,20 @@ module.exports = {
   },
   output: {
     filename: 'js/[name].js',
-    
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist'
 
+    path: path.resolve(__dirname, 'dist'),
+
+
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.js|jsx$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
+      },
+    ]
   },
 
   devServer: {
@@ -33,4 +43,9 @@ module.exports = {
     //   chunkFilename: '[id].css',
     // })
   ],
+  resolve: {
+
+    // 省略后缀
+    extensions: ['.js', '.jsx', '.css']
+  },
 }
