@@ -24,6 +24,11 @@ module.exports = {
         use: 'babel-loader',
         exclude: /node_modules/
       },
+
+      {
+        test: /\.css$/,     // 解析css
+        use: ['style-loader', 'css-loader?modules'] // 从右向左解析
+      }
     ]
   },
 
