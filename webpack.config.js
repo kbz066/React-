@@ -17,18 +17,58 @@ module.exports = {
 
   },
 
+  // module: {
+  //   rules: [
+  //     {
+  //       test: /\.js|jsx$/,
+  //       use: 'babel-loader',
+  //       exclude: /node_modules/
+  //     },
+
+  //     {
+  //       test: /\.css$/,     // 解析css
+  //       use: ['style-loader', 'css-loader?modules'] // 从右向左解析
+  //     }
+  //   ]
+  // },
   module: {
     rules: [
-      {
-        test: /\.js|jsx$/,
-        use: 'babel-loader',
-        exclude: /node_modules/
+
+      {//ES6、JSX处理
+        test: /(\.jsx|\.js)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query:
+        {
+
+          plugins: [
+            [
+              "import",
+              { libraryName: "antd", style: 'css' }
+            ] //antd按需加载
+          ]
+        },
       },
 
-      {
-        test: /\.css$/,     // 解析css
-        use: ['style-loader', 'css-loader?modules'] // 从右向左解析
-      }
+      {//CSS处理
+        test: /\.css$/,
+        loader: "style-loader!css-loader?modules",
+        exclude: /node_modules/,
+      },
+
+      {//antd样式处理
+        test: /\.css$/,
+        exclude: /src/,
+        use: [
+          { loader: "style-loader", },
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1
+            }
+          }
+        ]
+      },
     ]
   },
 
