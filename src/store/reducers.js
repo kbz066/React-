@@ -1,6 +1,6 @@
 let defaulState={
     inputValue : "aaa",
-    list : [123,999]
+    list : []
 }
 
 export default (state=defaulState,action)=>{
@@ -22,6 +22,14 @@ export default (state=defaulState,action)=>{
     if(action.type==="action_change_item"){
         let newState=JSON.parse(JSON.stringify(state));
         newState.inputValue=action.inputValue;
+
+        return newState;
+
+    }
+    
+    if(action.type==="action_add_list"){
+        let newState=JSON.parse(JSON.stringify(state));
+        newState.list=action.list;
 
         return newState;
 
