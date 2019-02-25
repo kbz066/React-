@@ -74,7 +74,10 @@ module.exports = {
 
   devServer: {
     contentBase: path.join(__dirname, "dist/html"),
-    port: 9999
+    port: 9999,
+    host: '0.0.0.0',
+    disableHostCheck: true,
+    
   },
   plugins: [
     new HtmlWebpackPlugin({
